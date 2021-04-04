@@ -1,0 +1,109 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ControllerAPI</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">fr.esiea.ex4A.API</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ControllerAPI (fr.esiea.ex4A.API)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ControllerAPI</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package fr.esiea.ex4A.API;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.springframework.http.MediaType;
+<i>4</i>&nbsp;import org.springframework.web.bind.annotation.*;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.io.IOException;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;@RestController
+<i>10</i>&nbsp;public class ControllerAPI {
+<i>11</i>&nbsp;    private final AgifyService agifyService;
+<i>12</i>&nbsp;
+<b class="nc"><i>13</i>&nbsp;    public ControllerAPI(AgifyService agifyService) { this.agifyService = agifyService; }</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    @PostMapping(&quot;/api/inscription&quot;)
+<i>16</i>&nbsp;    public void inscription(@RequestBody InfoUtilisateur userInfo) throws IOException {
+<b class="nc"><i>17</i>&nbsp;        System.out.println(userInfo);</b>
+<b class="nc"><i>18</i>&nbsp;        this.agifyService.addUser(userInfo);</b>
+<i>19</i>&nbsp;    }
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    @GetMapping(path = &quot;/api/matches&quot;, produces = MediaType.APPLICATION_JSON_VALUE)
+<i>22</i>&nbsp;    List&lt;InfoUtilisateur&gt; getMatchingUsers(@RequestParam(name = &quot;userName&quot;, required = true) String name, @RequestParam(name = &quot;userCountry&quot;, required = true) String country) {
+<b class="nc"><i>23</i>&nbsp;        List&lt;InfoUtilisateur&gt; userList = this.agifyService.matchUser(name, country);</b>
+<b class="nc"><i>24</i>&nbsp;        return userList;</b>
+<i>25</i>&nbsp;    }
+<i>26</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-04-04 20:55</div>
+</div>
+</body>
+</html>

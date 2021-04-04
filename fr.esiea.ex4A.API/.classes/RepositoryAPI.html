@@ -1,0 +1,124 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: RepositoryAPI</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">fr.esiea.ex4A.API</a> ]
+</div>
+
+<h1>Coverage Summary for Class: RepositoryAPI (fr.esiea.ex4A.API)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RepositoryAPI</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (4/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    47,1%
+  </span>
+  <span class="absValue">
+    (8/ 17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package fr.esiea.ex4A.API;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.HashMap;
+<i>5</i>&nbsp;import java.util.Map;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;@org.springframework.stereotype.Repository
+<b class="fc"><i>8</i>&nbsp;public class RepositoryAPI {</b>
+<b class="fc"><i>9</i>&nbsp;    final HashMap&lt;String, InfoUtilisateur&gt; userList = new HashMap&lt;&gt;();</b>
+<b class="fc"><i>10</i>&nbsp;    final HashMap&lt;String, AgifyUtilisateur&gt; userListWithAge = new HashMap&lt;&gt;();</b>
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    int getNumberOfUsers(){
+<b class="fc"><i>13</i>&nbsp;        return this.userList.size();</b>
+<i>14</i>&nbsp;    }
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    void addNewUser(InfoUtilisateur userInfo, AgifyUtilisateur userDataWithAge){
+<b class="fc"><i>17</i>&nbsp;        this.userList.put(userInfo.getUserId(), userInfo);</b>
+<b class="fc"><i>18</i>&nbsp;        this.userListWithAge.put(userInfo.getUserId(), userDataWithAge);</b>
+<b class="fc"><i>19</i>&nbsp;    }</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    boolean seeIfUserExists(InfoUtilisateur userInfo){
+<b class="fc"><i>22</i>&nbsp;        return this.userList.containsKey(userInfo.getUserId());</b>
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    InfoUtilisateur getUser(String userName, String countryId){
+<b class="nc"><i>26</i>&nbsp;        return this.userList.get(userName.concat(countryId));</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    ArrayList&lt;InfoUtilisateur&gt; matchUser(InfoUtilisateur userInfo){
+<b class="nc"><i>30</i>&nbsp;        ArrayList&lt;InfoUtilisateur&gt; matchingUsers = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>31</i>&nbsp;        for(Map.Entry&lt;String, AgifyUtilisateur&gt; userEntry : this.userListWithAge.entrySet()){</b>
+<b class="nc"><i>32</i>&nbsp;            if(Math.abs(userEntry.getValue().getAge() - this.userListWithAge.get(userInfo.getUserId()).getAge()) &lt;= 4){</b>
+<b class="nc"><i>33</i>&nbsp;                InfoUtilisateur possiblyMatchingUser = this.userList.get(userEntry.getValue().getUserId());</b>
+<b class="nc"><i>34</i>&nbsp;                if(possiblyMatchingUser.getSex().equals(userInfo.getSexPref()) &amp;&amp; userInfo.getSex().equals(possiblyMatchingUser.getSexPref())) {</b>
+<b class="nc"><i>35</i>&nbsp;                    matchingUsers.add(this.userList.get(userEntry.getValue().getUserId()));</b>
+<i>36</i>&nbsp;                }
+<i>37</i>&nbsp;            }
+<b class="nc"><i>38</i>&nbsp;        }</b>
+<b class="nc"><i>39</i>&nbsp;        return matchingUsers;</b>
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-04-04 20:55</div>
+</div>
+</body>
+</html>
